@@ -25,7 +25,7 @@ List all group members here:
 -   Andrew Baldassarra
 -   Luka Zubac
 -   Nav Bhatia
--   
+-   Tharun
 
 This file will be submitted as an Rmd file to GradeScope. You will need to create a group on GradeScope with the correct members. *If the person who submits this does not list you, you will not get a grade on this assignment!!!* Make sure you trust the person who is submitting it!
 
@@ -196,9 +196,6 @@ Now, bind the two data frames together (row-wise). Since the `Basin` column alre
 Name the data frame `cyclones_data_update_0`.
 
 ```{r error=TRUE}
-cyclones_data_update_0 <- bind_rows( at_cyclone, np_cyclone )
-
-print(cyclones_data_update_0)
 
 ```
 
