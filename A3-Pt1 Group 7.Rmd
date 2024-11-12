@@ -534,12 +534,12 @@ In the chunk below, aggregate the data to be total cases in 2020, by country. Yo
 
 ```{r covid_2020, error=TRUE}
 covid_2020 <- covid_cases |>
+  mutate(year = year(date))|>
   filter(year(date) == 2020) |>
   group_by(location, continent) |>
-  summarise(total_cases = max(total_cases, na.rm = TRUE)) |>
-  rename(country = location)
-
-
+  summarise(total_cases = sum(total_cases, na.rm = TRUE)) |>
+  select(country = location, continent, total_cases)
+  #rename(country = location)
 covid_2020
 ```
 
@@ -656,10 +656,10 @@ The remaining coutries are either broader geopolitical areas rather than countri
 Now we can join! Use a [join](https://dplyr.tidyverse.org/reference/mutate-joins.html) that only keeps countries that are in both data sets. The final data frame should have the columns `country`, `total_population`, `aware_no`, `aware_alittle`, `aware_moderate`, `aware_alot`, and `aware_refuse`.
 
 ```{r aware_pop, error=TRUE}
-aware_pop <- aware_fixed_country_match |>
-  inner_join(pop_data, by = "country") |>
-  select(country, total_population, aware_no, aware_alittle, aware_moderate, aware_alot, aware_refuse)
-
+aware_pop <- pop_data |>
+  filter(!country %in% c('Asian & Pacific Islands', 'Caribbean', 'Sub-Saharan Africa', 'Taiwan')) |> 
+  inner_join(aware_fixed_country_match, by = 'country') |>
+  select(country,total_population = SP.POP.TOTL, aware_no, aware_alittle, aware_moderate, aware_alot, aware_refuse) 
 
 aware_pop
 ```
@@ -679,16 +679,21 @@ setdiff(aware_countries, covid_countries)
 ```
 
 ```{r covid_2020_match_country, error=TRUE}
-covid_2020_match_country <- aware_pop|>
+covid_2020_match_country <- covid_2020 |>
   mutate(
     country = case_when(
-      country == "United States" ~ "United States of America",
-      country == "South Korea" ~ "Republic of Korea",
-      country == "Russia" ~ "Russian Federation",
-      # Add any other specific country replacements needed
-      TRUE ~ country))
-
-
+      country == "Congo"~ 'Congo, Dem. Rep.' ,
+      country == 'Egypt'~'Egypt, Arab Rep.' ,
+      country == 'Hong Kong'~ 'Hong Kong SAR, China',
+      country == "Laos"~ 'Lao PDR',
+      country == 'Slovakia'~'Slovak Republic',
+      country == 'South Korea'~ 'Korea, Rep.',
+      country == 'Turkey'~ 'Turkiye',
+      country == 'Vietnam'~ 'Viet Nam',
+      country == 'Yemen'~'Yemen, Rep.',
+      TRUE ~ country
+    )
+  )
 covid_2020_match_country
 ```
 
@@ -704,7 +709,6 @@ Join `aware_pop` and `covid_2020_match_country`, again only keep countries that 
 aware_covid <- aware_pop |>
   inner_join(covid_2020_match_country, by = "country") |>
   mutate(covid_per_capita = total_cases / total_population)
-
 
 aware_covid
 ```
@@ -729,7 +733,7 @@ aware_covid |>
         )
     ) |>
     ggplot() +
-    aes(x = value, y = cases_per_capita, colour = continent) +
+    aes(x = value, y = covid_per_capita, colour = continent) +
     geom_point() +
     geom_smooth(se = FALSE, method = "lm", formula = y ~ x) +
     facet_wrap(~ awareness, scales = "free") +
@@ -764,6 +768,7 @@ To make the data more convenient for Part 2, perform the following operations. T
 -   The data contain information from multiple years, and these years are not consistent for each country. For Part 2, these data will mainly be used to compare countries (we don't need the happiness over time). Filter the data so that we only have the *most recent* observation of the relevant values. (In my solution, I use the `slice()` function as part of a very short pipeline.)
 
 ```{r happiness}
+library(janitor)
 happiness <- read.xlsx("DataForTable2.1.xlsx") |>
      clean_names() |>
   rename(country = country_name) |>
