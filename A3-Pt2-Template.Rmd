@@ -41,18 +41,17 @@ Note that all of the code is *hidden* by default. This file will be graded based
 You will only submit the PDF version of this document. To knit to PDF, you'll need to run `install.packages("tinytex")` in the console, followed by `tinytex::install_tinytex()` (DO NOT PUT THESE COMMANDS IN AN RMD FILE!!!). If you encounter errors in "Knit to PDF", you can "knit to html" and then print the html file to PDF using your operating system's PDF view (e.g. Adobe Acrobat). Only standalone PDF files will be accepted by MyLS.
 
 # Abstract
-
-General context, very brief data descriptions, techniques used, and general conclusions, all contained within a single, concise paragraph.
+In this report, we analyze relationships between hurricane intensity, sea ice extent, and climate awareness using cleaned datasets from Part 1. By combining insights from three data sources, we explore whether hurricane strength is related to sea ice extent and whether climate awareness correlates with happiness. We use summary statistics, visualizations, and correlations to investigate these questions, and we conclude with insights that examine and show the complexities of climate change perceptions and impacts.
 
 # Introduction
+Climate change has been a major global issue with significant impacts on the environment and human life. Understanding the relationships between natural phenomena, such as hurricane intensity and ice extent, and human perspectives on climate change is essential.
 
+In this report, we explore aspects of climate change through three datasets: hurricane intensity, sea ice extent, and climate awareness across various countries. We aim to uncover potential relationships, such as whether increasing hurricane intensity aligns with decreasing ice extent, and whether climate change awareness has any connection with international happiness levels.
+
+Our analyses involve data summarization, correlation testing, and visualization. By the end of this report, we present findings that illustrate the interconnectedness of these climate-related issues.
 Climate change is something that has been studied. Here's some relevant information about the context of our study.
 
-If needed, this paragraph is more information about the context.
 
-In this report, we are going to explore some aspects climate change and the impact and/or perceptions of it by using exploratory techniques. We'll explore <<general description of data>> using <<general description of techniques>>.
-
-By the end of this report, we will have shown ...
 
 
 
