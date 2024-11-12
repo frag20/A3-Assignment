@@ -541,7 +541,7 @@ covid_2020 <- covid_cases |>
   group_by(location, continent) |>
   summarise(total_cases = sum(total_cases, na.rm = TRUE)) |>
   select(country = location, continent, total_cases)
-  #rename(country = location)
+
 covid_2020
 ```
 
