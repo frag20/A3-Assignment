@@ -536,11 +536,11 @@ In the chunk below, aggregate the data to be total cases in 2020, by country. Yo
 
 ```{r covid_2020, error=TRUE}
 covid_2020 <- covid_cases |>
-  mutate(year = year(date))|>
-  filter(year(date) == 2020) |>
+  mutate(year = year(date)) |>
+  filter (year == 2020) |>
   group_by(location, continent) |>
-  summarise(total_cases = sum(total_cases, na.rm = TRUE)) |>
-  select(country = location, continent, total_cases)
+  summarise(total_cases = sum(total_cases, na.rm=TRUE)) |>
+  select(country = location, continent,total_cases)
 
 covid_2020
 ```
@@ -591,13 +591,8 @@ Many of these countries are actually in both, but have a different name! Before 
 
 ```{r aware_fixed_country, error=TRUE}
 aware_fixed_country <- climate_awareness |>
-    mutate(
-        # Replace *all* *literal* periods with a space in the country column
-         country = str_replace_all(country, "\\.", " ")
+    mutate(country = str_replace_all(country, '\\.',' ')
     )
-
-
-    
 
 aware_fixed_country |> pull(country) |> unique()
 ```
@@ -627,19 +622,18 @@ Use a `case_when()` statement to change the countries in `aware_fixed_country` w
 ```{r aware_fixed_country_match}
 aware_fixed_country_match <- aware_fixed_country |>
     mutate(
-        # Change country using a case_when statement
-           country = case_when(
+      country = case_when(
         country == "Bolivia (Plurinational State of)" ~ "Bolivia",
-        country == "Congo (Democratic Republic of the)" ~ "Congo",
-        country == "Egypt" ~ "Egypt",
-        country == "Hong Kong" ~ "Hong Kong",
-        country == "Lao People's Democratic Republic" ~ "Laos",
-        country == "Slovakia" ~ "Slovakia",
-        country == "North MAcedonia" ~ "North Macedonia",
-        country == "South Korea" ~ "Korea, South",
-        country == "Turkey" ~ "Türkiye",
-        country == "Vietnam" ~ "Vietnam",
-        country == "Yemen" ~ "Yemen",
+        country == "Congo (Democratic Republic of the)" ~ "Congo, Dem. Rep.",
+        country == 'Egypt' ~ 'Egypt, Arab Rep.',
+        country == 'Hong Kong' ~ 'Hong Kong SAR, China',
+        country == "Lao People's Democratic Republic" ~ "Lao PDR",
+        country == 'Slovakia' ~ 'Slovak Republic',
+        country == 'North MAcedonia' ~ 'North Macedonia',
+        country == 'South Korea' ~ 'Korea, Rep.',
+        country == 'Turkey' ~ 'Turkiye',
+        country == 'Vietnam' ~ 'Viet Nam',
+        country == 'Yemen' ~ 'Yemen, Rep.',
         TRUE ~ country
 
     ))
@@ -658,10 +652,9 @@ The remaining coutries are either broader geopolitical areas rather than countri
 Now we can join! Use a [join](https://dplyr.tidyverse.org/reference/mutate-joins.html) that only keeps countries that are in both data sets. The final data frame should have the columns `country`, `total_population`, `aware_no`, `aware_alittle`, `aware_moderate`, `aware_alot`, and `aware_refuse`.
 
 ```{r aware_pop, error=TRUE}
-aware_pop <- pop_data |>
-  filter(!country %in% c('Asian & Pacific Islands', 'Caribbean', 'Sub-Saharan Africa', 'Taiwan')) |> 
-  inner_join(aware_fixed_country_match, by = 'country') |>
-  select(country,total_population = SP.POP.TOTL, aware_no, aware_alittle, aware_moderate, aware_alot, aware_refuse) 
+aware_pop <- pop_data |> filter(!country %in% c('Asian & Pacific Islands', 'Caribbean', 'Sub-Saharan Africa', 'Taiwan')) |> 
+inner_join(aware_fixed_country_match, by = 'country') |>
+select(country,total_population = SP.POP.TOTL, aware_no, aware_alittle, aware_moderate, aware_alot, aware_refuse) 
 
 aware_pop
 ```
@@ -708,9 +701,9 @@ Okay, now take a quick breather. Grab a tea, go for a walk, rock out to some mus
 Join `aware_pop` and `covid_2020_match_country`, again only keep countries that are in both. Create a new column called `covid_per_capita` based on the total cases dividedby total population.
 
 ```{r aware_covid, error=TRUE}
-aware_covid <- aware_pop |>
-  inner_join(covid_2020_match_country, by = "country") |>
-  mutate(covid_per_capita = total_cases / total_population)
+aware_covid <- aware_pop|> 
+inner_join(covid_2020_match_country, by = 'country') |>
+  mutate(covid_per_capita = total_cases/total_population)
 
 aware_covid
 ```
