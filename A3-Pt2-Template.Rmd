@@ -60,53 +60,53 @@ Climate change is something that has been studied. Here's some relevant informat
 
 
 
-
-
-
-
-
 # Data Description
 
 ## <<Data Set 1>>
-
 ```{r load_data1}
-# Put in your code to load in the data set, along with any
-# necessary cleaning beyond what was done in Part 1
-
-# Note that the code in this document will not be shown
-# when you click "knit", so the placement of this code
-# chunk is purely for your benefit: You can see what happened
-# with your data, which makes it easier to describe below!
+cyclones_data <- read_parquet("cyclones_data.parquet")
 ```
+The data comes from Atlantic and North Pacific basins and describes detailed information on hurricanes.
+The cyclone data includes key information that is essential for the analysis, grouped into the following categories:
 
-The data come from <<place>> and describe <<more specific description of the data>>.
+Identification: Information to identify the cyclone's basin: Basin (geographical basin), Number (cyclone ID), Nameyear (year).
+Time: Date and time of the cyclone's observation: ObservYear, Month, Day, Hour, Minute (date and time of observation).
+Status and Location: The cyclone's current status and its geographical coordinates: Status (current status), Latitude, Longitude (coordinates).
+Intensity: The cyclone's maximum wind speed and minimum central pressure, indicating its strength: Max_wind (maximum wind speed), Min_pressure (minimum pressure).
 
-In order to clean the data, we <<steps to clean the data, concise but precise enough that a reader could follow your steps without seeing your code>>.
+In order to clean the data, we began with the raw cyclone data, which was initially in an untidy format with multiple values stored in a single column. We used the separate_wider_delim() function to split the data into meaningful columns, creating new ones for attributes such as cyclone status, latitude, longitude, wind speed, pressure, and extent measurements. Missing values, represented by placeholders like "-999" and "-99", were replaced with NA. Latitude and longitude, originally stored as directional strings (e.g., "28.0N" or "94W"), were converted into numeric values using a custom function, convert_latlon(), which applies the correct sign based on the direction. The cyclones were then categorized by their maximum wind speed using the Saffir-Simpson Hurricane Wind Scale. Finally, the cleaned data from the Atlantic and North Pacific basins were combined into a single dataset using bind_rows().
 
 ## <<Data Set 2>>
 
 ```{r load_data2}
-# Put in your code to load in the data set, along with any
-# necessary cleaning beyond what was done in Part 1
-
-# Reminder: do NOT print your data to the screen unless it's
-# completely necessary
+ice_extent_yearly <- read_parquet("ice_extent_yearly.parquet")
 ```
+The data comes from the Arctic and the Antarctic poles and detail the yearly sea ice extent.
+The Sea Ice data includes key information that is essential for the analysis, grouped into the following categories:
 
-The data come from <<place>> and detail <<more specific description of the data>>.
+Temporal and Geographical Information:
+Year: The year of the sea ice extent measurement.
+Region: The geographical region (Arctic or Antarctic).
 
-In order to clean the data, we <<steps to clean the data, concise but precise enough that a reader could follow your steps without seeing your code>>
+Sea Ice Extent:
+Name: Indicates whether the value is the minimum or maximum sea ice extent for that year.
+Value: The corresponding sea ice extent for that year, region, and type (min or max).
+
+In order to clean the data, we began by reading the raw sea ice extent data from an Excel file, which contains separate sheets for the Arctic and Antarctic. We selected the relevant columns (month, day, and years from 1978 to 2023) and reshaped the data into a long format, where each row represents a specific date-year combination with the corresponding sea ice extent. Missing month values were filled using the fill() function, and rows with missing sea ice extent values were removed. A new date column was created by combining the year, month, and day, and a region column was added to distinguish between the Arctic and Antarctic data. The dataset was then grouped by year and region to calculate the yearly minimum and maximum ice extent, which was reshaped into a long format with columns for the type (min/max) and corresponding value (ice extent).
 
 ## <<Data Set 3>>
 
 ```{r load_data2}
-# Put in your code to load in the data set, along with any
-# necessary cleaning beyond what was done in Part 1
+climate_awareness <- read_parquet("climate_awareness.parquet")
 ```
 
-The data come from <<place>> and detail <<more specific description of the data>>.
+The climate awareness data contains the proportion of people from each country who answered "no", "a little", ... to a question asking about their awareness of the actual definitions of climate change.
 
-In order to clean the data, we <<steps to clean the data, concise but precise enough that a reader could follow your steps without seeing your code>>
+The climate awareness data includes key information that is essential for the analysis:
+ - "Countries in pop_data that aren't in climate_awareness"
+ - "Countries in aware_countries that aren't in pop_data"
+
+In order to clean the data, we began by reading the climate awareness survey results from an Excel file. The relevant sheet was loaded and reshaped using pivot_longer() to convert the data from a wide to a long format, placing country names in a 'country' column and survey scores in a 'score' column. The values in the 'climate_awareness' column were then recoded into meaningful categories (e.g., 'aware_no', 'aware_alittle', etc.) using case_when(). This recoded column was renamed to 'answer'. Next, the data was pivoted back to a wider format using pivot_wider(), creating separate columns for each awareness level, with corresponding scores for each country. Finally, the cleaned data was saved in Parquet format for efficient storage and future use.
 
 ## Combining the Data
 
