@@ -45,12 +45,15 @@ In this report, we are analyzing the relationships between the data resuls from 
 Further analyzing the 3 datasets, we can also make connections from the data to determine whether climate awareness correlates with happiness and how. Through the use and ability to undersand, summary statistics, visualizations, and correlations, we can investigate and conclude with supporting insights, the complexities of climate change perceptions/impacts and the relation shown.
 
 # Introduction
-Climate change has been a major global issue with significant impacts on the environment and human life. Understanding the relationships between natural phenomena, such as hurricane intensity and ice extent, and human perspectives on climate change is essential.
+Climate change has been a major global issue with significant impacts on the environment and human life. Understanding the relationships between natural events, such as hurricane intensity and ice extent, and human perspectives on climate change is essential.
 
-In this report, we explore aspects of climate change through three datasets: hurricane intensity, sea ice extent, and climate awareness across various countries. We aim to uncover potential relationships, such as whether increasing hurricane intensity aligns with decreasing ice extent, and whether climate change awareness has any connection with international happiness levels.
+In this report, we explore aspects of climate change through three datasets: hurricane intensity, sea ice extent, and climate awareness across various countries. We aim to find potential relationships, such as whether increasing hurricane intensity aligns with decreasing ice extent, and whether climate change awareness has any connection with international happiness levels.
 
-Our analyses involve data summarization, correlation testing, and visualization. By the end of this report, we present findings that illustrate the interconnectedness of these climate-related issues.
+Our analyses involve data summarization, correlation testing, and visualization. By the end of this report, we will present findings that show connections of these climate-related issues.
 Climate change is something that has been studied. Here's some relevant information about the context of our study.
+
+
+
 
 
 
