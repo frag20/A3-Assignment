@@ -89,7 +89,7 @@ In order to clean the data, we began by reading the raw sea ice extent data from
 
 ## <<Data Set 3>>
 
-```{r load_data2}
+```{r load_data3}
 climate_awareness <- read_parquet("climate_awareness.parquet")
 ```
 
