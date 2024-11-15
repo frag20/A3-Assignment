@@ -89,12 +89,6 @@ The climate awareness data includes key information that is essential for the an
 
 In order to clean the data, we began by reading the climate awareness survey results from an Excel file. The relevant sheet was loaded and reshaped using pivot_longer() to convert the data from a wide to a long format, placing country names in a 'country' column and survey scores in a 'score' column. The values in the 'climate_awareness' column were then recoded into meaningful categories (e.g., 'aware_no', 'aware_alittle', etc.) using case_when(). This recoded column was renamed to 'answer'. Next, the data was pivoted back to a wider format using pivot_wider(), creating separate columns for each awareness level, with corresponding scores for each country. Finally, the cleaned data was saved in Parquet format for efficient storage and future use.
 
-## Combining the Data
-
-Explain how any combinations of data were performed. Explain what kind of join was needed, whether columns had to be modified (for example, matching "country" names.)
-
-
-
 
 # Exploratory Data Analysis
 
