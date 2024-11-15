@@ -28,18 +28,6 @@ library(tidyverse)
 library(arrow)
 library(tinytex)
 ```
-
-
-# Instructions
-
-You are encouraged to remove this instruction section prior to submission.
-
-It is recommended that you follow the structure of this template. The text is all placeholder - you are free to change any/all wording as you please, but it is very helpful for the grading process if you keep the same structure. Anything in <<double angle brackets>> definitely needs to be changed, but you are free to change any/all sentences!
-
-Note that all of the code is *hidden* by default. This file will be graded based on the insights, not the code.
-
-You will only submit the PDF version of this document. To knit to PDF, you'll need to run `install.packages("tinytex")` in the console, followed by `tinytex::install_tinytex()` (DO NOT PUT THESE COMMANDS IN AN RMD FILE!!!). If you encounter errors in "Knit to PDF", you can "knit to html" and then print the html file to PDF using your operating system's PDF view (e.g. Adobe Acrobat). Only standalone PDF files will be accepted by MyLS.
-
 # Abstract
 In this report, we are analyzing the relationships between the data results from cyclone intensity, sea ice extent, and climate awareness using the cleaned datasets assigned for completion in part 1. Through the combination of presented/shown insights from these three data sources, we can show and explore some interesting themes, such as whether cyclone severity is actually related to sea ice extent and in what ways.
 Further analyzing the 3 datasets and their relations, we can also make connections to determine whether climate awareness correlates with specifec natural disasters like sea ice and cyclones and how etc... Through the use and ability to undersand, summary statistics, visualizations, and correlations, we can investigate and conclude with the help of supporting insights, the issues around climate change perceptions/impacts and the relation shown.
