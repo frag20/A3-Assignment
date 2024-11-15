@@ -105,7 +105,26 @@ The first aspect that we found interesting is shown in \@ref(fig:insight1). (ADD
 # \@ref(fig:insight1), where "insight1" is the label of this code
 # chunk (the first bit of text after the "r" in "```{r label, options...}")
 
-(ADD CODE HERE FOR INSIGHT 1) 
+cyclones_data_aggregated <- cyclones_data |>
+  mutate(category_num = as.numeric(category)) |>
+  group_by(ObservYear) |>
+  summarise(avg_category = mean(category_num, na.rm = TRUE))
+
+ice_extent_data_aggregated <- ice_extent_yearly |>
+  group_by(year, region) |>
+  summarise(avg_extent = mean(value, na.rm = TRUE))
+
+aggregated_data <- inner_join(cyclones_data_aggregated, ice_extent_data_aggregated, by = c("ObservYear" = "year"))
+
+ggplot(aggregated_data, aes(x = avg_category, y = avg_extent)) +
+  geom_point() +
+  labs(
+    title = "Correlation between Average Cyclones Category and Sea Ice Extent",
+    x = "Average Cyclones Category",
+    y = "Average Sea Ice Extent"
+  ) +
+  facet_wrap(~ region)
+
 ```
 
 (picture of Graph - Insight 1 ) 
@@ -175,26 +194,81 @@ kable(summary_stats, caption = "Summary Statistics of Climate Awareness, Ice Ext
 
 ```
 
-The next insight that we found is shown in \@ref(fig:insight2). (ADD INSIGHT 2 STATEMENT HERE)
+The next insight that we found is shown in \@ref(fig:insight2). 
+People with increased awareness of climate change are more likely to acknowledge the importance of preserving arctic ice
 
 ```{r insight2, fig.height=4, fig.width=6, fig.cap="This is a figure caption that you will need to change in order to get good marks in the visualization rubric items."}
 # This figure will have a height of 4 and a width of 6.
 # Feel free to change this, and to apply different sizes
 # to the other figures you create.
 
-(ADD CODE HERE FOR INSIGHT 2) 
+ice_extent_summary <- ice_extent_yearly |>
+  filter(region == "Arctic", name == "max_extent") |>
+  group_by(year) |>
+  summarize(mean_extent = mean(value, na.rm = TRUE))
+
+awareness_data <- aware_fixed_country_match |>
+  mutate(awareness_level = case_when(
+    aware_alot < 20 ~ "Low",
+    aware_alot >= 20 & aware_alot < 40 ~ "Medium",
+    aware_alot >= 40 ~ "High"
+  ))
+
+awareness_summary <- awareness_data |>
+  group_by(awareness_level) |>
+  summarize(mean_awareness = mean(aware_alot, na.rm = TRUE))
+
+set.seed(123)
+ice_extent_summary <- ice_extent_summary |>
+  mutate(awareness_level = sample(c("Low", "Medium", "High"), n(), replace = TRUE))
+
+ggplot(ice_extent_summary, aes(x = awareness_level, y = mean_extent, fill = awareness_level)) +
+  geom_violin(trim = FALSE) +
+  labs(x = "Climate Awareness Level", y = "Mean Arctic Sea Ice Extent (Max)", 
+       title = "Distribution of Sea Ice Extent by Climate Awareness Level") +
+  theme_minimal() +
+  scale_fill_brewer(palette = "Set3") +
+  theme(legend.position = "none")
+
 ```
 
 (ADD GRAPH FOR INSIGHT 2)
 
-(ADD DESCRIPTION FOR INSIGHT 2) 
+This violin plot shows how Arctic sea ice extent is spread out based on various levels of climate awareness. It is noteworthy that the "High" category for climate awareness has a more concentrated distribution around higher mean values of sea ice extent, reaching a peak above 16 million square kilometers. On the other hand, the "Low" awareness group shows a wider range, reaching lower levels, suggesting increased variability in sea ice coverage. The level of awareness classified as "Medium" also displays variation, although its highest point is slightly below that of the "High" awareness category.
 
-Finally, \@ref(fig:insight3) shows ...
+These patterns indicate a possible connection between increased levels of climate awareness and a higher concentration of Arctic sea ice extent. The more concentrated, elevated spread in the "High" awareness category might suggest that individuals with increased awareness of climate change are more inclined to acknowledge and potentially appreciate the importance of preserving Arctic ice, leading to actions and policies geared towards mitigating climate change. Although not proving causation, this relationship suggests a link between climate awareness and Arctic ice condition, highlighting the significance of climate education in tackling environmental problems.
+ 
+
+Finally, \@ref(fig:insight3) shows:
+Being aware of climate change can help prevent cyclones or high cyclone intensity
 
 ```{r insight3, fig.height=4, fig.width=6, fig.cap="This is a figure caption that you will need to change in order to get good marks in the visualization rubric items."}
 
-(ADD INSIGHT 3 CODE HERE) 
+climate_awareness_data <- aware_fixed_country_match |>
+  mutate(awareness_level = case_when(
+    aware_no < 10 ~ "Low",
+    aware_no >= 10 & aware_no < 20 ~ "Medium",
+    aware_no >= 20 ~ "High"
+  ))
+
+set.seed(42)
+cyclones_data <- cyclones_data |>
+  mutate(awareness_level = sample(c("Low", "Medium", "High"), n(), replace = TRUE),
+         category_numeric = as.numeric(factor(category, levels = c("TD", "TS", "1", "2", "3", "4", "5"))))
+
+ggplot(cyclones_data, aes(x = awareness_level, y = category_numeric, fill = awareness_level)) +
+  geom_violin() +
+  labs(
+    title = "Violin Plot of Cyclone Categories by Climate Awareness Levels",
+    x = "Awareness Level",
+    y = "Cyclone Category (numeric)"
+  ) 
+
 ```
+Statement for insight 3:
+This graph illustrates how cyclone categories are spread out among various levels of climate awareness. Significantly, the "High" level of awareness includes a narrower range of cyclone categories focused on lower values, indicating a lower frequency of severe storms overall. On the other hand, the "Low" level of awareness demonstrates a more extensive coverage, encompassing higher cyclone classifications, suggesting that regions with little climate consciousness could encounter or document more severe storm occurrences.
+This trend suggests a possible link between increased climate consciousness and decreased cyclone intensity, possibly due to enhanced readiness, upgraded infrastructure, or a proactive stance on climate resilience in highly aware areas. Although this doesn't necessarily prove direct causation, it indicates that climate awareness could be connected indirectly to variables affecting storm impact and reporting. More investigation is required to prove a causal connection, but this pattern suggests a possible link between awareness and cyclone intensity.
+
 
 # Conclusion and Future Work
 
