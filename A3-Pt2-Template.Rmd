@@ -226,10 +226,16 @@ The limitations of this analysis are as follows. While we explored several inter
 
 # References
 
-I am not strict about MLA or APA style or anything like that. For this report, I would much rather have your citations be easy to match to your insights.
+OpenAI. (2024). ChatGPT (Oct 2023 version) [Large language model]. https://chat.openai.com^[This source provided guidance on structuring the analysis and insights, offering assistance in understanding data visualization and statistical methods.]
 
-The easiest way is to use Rmd's [footnote](https://bookdown.org/yihui/rmarkdown/markdown-syntax.html#inline-formatting) syntax. This will put a number beside the word where the footnote appears, and the full text of the footnote at the bottom of the page (pdf) or end of the document (html). The syntax is:^[See the source view to see this footnote], where I suggest that you put in something like this^[The relevance to the insight is ... . From <<name of source and name of article>>, published on <<date>>, url: <<link to page>>] to make references for this assignment.
 
-Alternatively, you could make a list of citations with their main arguments and why they're relevent to your insights, methods, etc.
+Aue, L., & Rinke, A. (2023). Cyclone impacts on sea ice concentration in the Atlantic Arctic Ocean: annual cycle and recent changes. Geophysical Research Letters, 50(17). https://agupubs.onlinelibrary.wiley.com/doi/full/10.1029/2023GL104657^[This study explores the link between cyclone activity and sea ice in the Arctic, directly informing Insight 1 regarding the correlation between sea ice extent and storm category.]
 
-The link above also references "bibtex" files. These are also extremely convenient, but have a steep learning curve and they make it difficult to tie them to an insight. If you use bibtext, then make sure that you provide a sentence to describe the source and it's relevance when you cite it - don't just add citations to the end of a sentence (this is common practice in academia, but I want to know that your citations are directly relevant for this assignmnet).
+The science of Arctic Weather and climate. (n.d.). National Snow and Ice Data Center. https://nsidc.org/learn/parts-cryosphere/arctic-weather-and-climate/science-arctic-weather-and-climate^[This source provided foundational information on Arctic weather patterns, which helped contextualize Insight 2 regarding climate awareness and sea ice extent in the Arctic.]
+
+Khatibi, F. S., Dedekorkut-Howes, A., Howes, M., & Torabi, E. (2021). Can public awareness, knowledge and engagement improve climate change adaptation policies? Discover Sustainability, 2(1). https://link.springer.com/article/10.1007/s43621-021-00024-z^[This article supports Insight 2 and Insight 3, discussing how increased climate awareness can lead to better public engagement with climate policies, which could have an impact on both sea ice preservation and cyclone preparedness.]
+
+Extreme Weather and Climate Change: Health Impacts
+Ebi, K. L., Vanos, J., Baldwin, J. W., Bell, J. E., Hondula, D. M., Errett, N. A., Hayes, K., Reid, C. E., Saha, S., Spector, J., & Berry, P. (2021). Extreme Weather and Climate Change: population health and health system implications. Annual Review of Public Health, 42(1), 293–315. https://doi.org/10.1146/annurev-publhealth-012420-105026^[This review highlights how extreme weather, including cyclones, is increasingly impacting health systems, which is relevant to Insight 3 about cyclone intensity and climate awareness. The article underscores the role of preparedness in mitigating storm-related impacts.]
+
+United Nations. (n.d.). Education is key to addressing climate change | United Nations. https://www.un.org/en/climatechange/climate-solutions/education-key-addressing-climate-change^[This source discusses the importance of climate education, reinforcing the ideas in Insight 2 and Insight 3 about how climate awareness can lead to positive action regarding sea ice conservation and disaster preparedness.]
