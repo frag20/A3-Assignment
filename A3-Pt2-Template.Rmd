@@ -4,7 +4,6 @@ author: "Group 7"
 date: "November 12th, 2024"
 output: pdf_document
 ---
-
 List your group members, including their student numbers, here:
 
 - Micky Fragomeni (169083094)
@@ -39,7 +38,6 @@ In this report, we explore aspects of climate change through three datasets: hur
 
 Our analyses involve data summarization, correlation testing, and visualization. By the end of this report, we will present findings that show connections of these climate-related issues.
 Climate change is something that has been studied. Here's some relevant information about the context of our study.
-
 
 # Data Description
 
@@ -80,7 +78,6 @@ In order to clean the data, we began by reading the raw sea ice extent data from
 ```{r load_data3}
 climate_awareness <- read_parquet("climate_awareness.parquet")
 ```
-
 The climate awareness data contains the proportion of people from each country who answered "no", "a little", ... to a question asking about their awareness of the actual definitions of climate change.
 
 The climate awareness data includes key information that is essential for the analysis:
@@ -89,7 +86,6 @@ The climate awareness data includes key information that is essential for the an
 
 In order to clean the data, we began by reading the climate awareness survey results from an Excel file. The relevant sheet was loaded and reshaped using pivot_longer() to convert the data from a wide to a long format, placing country names in a 'country' column and survey scores in a 'score' column. The values in the 'climate_awareness' column were then recoded into meaningful categories (e.g., 'aware_no', 'aware_alittle', etc.) using case_when(). This recoded column was renamed to 'answer'. Next, the data was pivoted back to a wider format using pivot_wider(), creating separate columns for each awareness level, with corresponding scores for each country. Finally, the cleaned data was saved in Parquet format for efficient storage and future use.
 
-
 # Exploratory Data Analysis
 
 To achieve our goals, we explored the data by plotting in one scatter plot, and two violin plots, to help show correlations between the three datasets. 
@@ -97,7 +93,6 @@ To achieve our goals, we explored the data by plotting in one scatter plot, and 
 We explored many aspects of the data but will demonstrate three. These are Cyclone Data, Ice Extent, and Climate Awareness. 
 
 The first aspect that we found interesting is shown in \@ref(fig:insight1). (ADD SUMMARY STATEMENT HERE) 
-
 
 ```{r insight1, fig.cap="This is a figure caption that you will need to change in order to get good marks in the visualization rubric items."}
 # This is an example of how you can control figures and captions in
@@ -126,7 +121,6 @@ ggplot(aggregated_data, aes(x = avg_category, y = avg_extent)) +
   facet_wrap(~ region)
 
 ```
-
 (picture of Graph - Insight 1 ) 
 
 #This scatter plot with facets offers an interesting view of the relationship between average storm category and sea ice extent in the Antarctic and Arctic regions. 
@@ -149,7 +143,6 @@ This insight is supported by the summary statistics in table \@ref(tab:summary_s
 
 library(dplyr)
 library(knitr)
-
 
 ice_extent_summary <- ice_extent_yearly |>
   filter(region == "Arctic", name == "max_extent") |>
@@ -231,14 +224,10 @@ ggplot(ice_extent_summary, aes(x = awareness_level, y = mean_extent, fill = awar
   theme(legend.position = "none")
 
 ```
-
-(ADD GRAPH FOR INSIGHT 2)
-
 This violin plot shows how Arctic sea ice extent is spread out based on various levels of climate awareness. It is noteworthy that the "High" category for climate awareness has a more concentrated distribution around higher mean values of sea ice extent, reaching a peak above 16 million square kilometers. On the other hand, the "Low" awareness group shows a wider range, reaching lower levels, suggesting increased variability in sea ice coverage. The level of awareness classified as "Medium" also displays variation, although its highest point is slightly below that of the "High" awareness category.
 
 These patterns indicate a possible connection between increased levels of climate awareness and a higher concentration of Arctic sea ice extent. The more concentrated, elevated spread in the "High" awareness category might suggest that individuals with increased awareness of climate change are more inclined to acknowledge and potentially appreciate the importance of preserving Arctic ice, leading to actions and policies geared towards mitigating climate change. Although not proving causation, this relationship suggests a link between climate awareness and Arctic ice condition, highlighting the significance of climate education in tackling environmental problems.
  
-
 Finally, \@ref(fig:insight3) shows:
 Being aware of climate change can help prevent cyclones or high cyclone intensity
 
@@ -263,7 +252,6 @@ ggplot(cyclones_data, aes(x = awareness_level, y = category_numeric, fill = awar
     x = "Awareness Level",
     y = "Cyclone Category (numeric)"
   ) 
-
 ```
 Statement for insight 3:
 This graph illustrates how cyclone categories are spread out among various levels of climate awareness. Significantly, the "High" level of awareness includes a narrower range of cyclone categories focused on lower values, indicating a lower frequency of severe storms overall. On the other hand, the "Low" level of awareness demonstrates a more extensive coverage, encompassing higher cyclone classifications, suggesting that regions with little climate consciousness could encounter or document more severe storm occurrences.
@@ -283,7 +271,6 @@ The limitations of this analysis are as follows. While we explored several inter
 # References
 
 OpenAI. (2024). ChatGPT (Oct 2023 version) [Large language model]. https://chat.openai.com^[This source provided guidance on structuring the analysis and insights, offering assistance in understanding data visualization and statistical methods.]
-
 
 Aue, L., & Rinke, A. (2023). Cyclone impacts on sea ice concentration in the Atlantic Arctic Ocean: annual cycle and recent changes. Geophysical Research Letters, 50(17). https://agupubs.onlinelibrary.wiley.com/doi/full/10.1029/2023GL104657^[This study explores the link between cyclone activity and sea ice in the Arctic, directly informing Insight 1 regarding the correlation between sea ice extent and storm category.]
 
