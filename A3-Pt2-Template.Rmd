@@ -128,7 +128,11 @@ The first aspect that we found interesting is shown in \@ref(fig:insight1). (ADD
 
 (picture of Graph - Insight 1 ) 
 
-This scatter plot with facets offers an interesting view of the relationship between average storm category and sea ice extent in the Antarctic and Arctic regions. Sea ice extent in the Antarctic region seems to remain fairly consistent at an average of 11, with no clear trend despite changes in the average storm category. This may indicate that changes in storm intensity have a minimal impact on Antarctic sea ice, as other environmental factors likely have a greater influence on its extent. On the other hand, in the Arctic chart, there is greater fluctuation in the amount of sea ice and a small grouping of data points towards the lower range of storm levels. This could suggest a more intricate or roundabout connection between storm category and sea ice extent in the Arctic, potentially showing that Arctic sea ice could be more responsive to storms while also being greatly impacted by other climate factors, like increasing temperatures. In general, although the correlation is not highly noticeable, this graph indicates variations in how storm activity is related to sea ice extent across regions.
+#This scatter plot with facets offers an interesting view of the relationship between average storm category and sea ice extent in the Antarctic and Arctic regions. 
+#Sea ice extent in the Antarctic region seems to remain fairly consistent at an average of 11, with no clear trend despite changes in the average storm category. 
+# This may indicate that changes in storm intensity have a minimal impact on Antarctic sea ice, as other environmental factors likely have a greater influence on its extent. 
+# On the other hand, in the Arctic chart, there is greater fluctuation in the amount of sea ice and a small grouping of data points towards the lower range of storm levels. 
+# This could suggest a more intricate or roundabout connection between storm category and sea ice extent in the Arctic, potentially showing that Arctic sea ice could be more responsive to storms while also being greatly impacted by other climate factors, like increasing temperatures. In general, although the correlation is not highly noticeable, this graph indicates variations in how storm activity is related to sea ice extent across regions.
 
 This insight is supported by the summary statistics in table \@ref(tab:summary_stats)
 
