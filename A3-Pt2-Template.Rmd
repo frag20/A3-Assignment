@@ -216,13 +216,13 @@ Finally, \@ref(fig:insight3) shows ...
 
 # Conclusion and Future Work
 
-Overall, we found <<general ideas>>.
+Overall, we found that the relationships between cyclone intensity, sea ice extent, and climate awareness are complex and multifaceted. Our analyses suggest that, in the Arctic region, sea ice extent is more responsive to storm intensity, with fluctuations in ice coverage potentially linked to varying storm categories. Conversely, the Antarctic region shows a more stable sea ice extent, indicating that other environmental factors may play a more significant role in determining ice coverage than cyclones alone. In terms of climate awareness, we observed a correlation between higher awareness levels and larger, more stable Arctic sea ice extents. This could suggest that communities with higher climate awareness are more likely to support policies that protect the environment, though this remains a potential correlation rather than a proven causal relationship.
 
-A second paragraph about our findings.
+Furthermore, our findings suggest that increased climate awareness might indirectly lead to reduced cyclone intensity or more proactive approaches to cyclone preparedness, especially in regions with a high level of awareness. Although this connection is not causally confirmed, it aligns with the notion that informed communities may take preventive or mitigating actions to reduce disaster impacts.
 
-The next steps in this analysis are...
+The next steps in this analysis are to further explore the potential causal relationships between climate awareness, storm intensity, and sea ice extent using more advanced statistical methods, such as regression analysis or time-series modeling. Additionally, we plan to expand the scope of the data to include more regions and temporal data points, which will provide a more comprehensive understanding of these relationships.
 
-The limitations of this analysis are as follows. (Do not simply list potential issues with sampling, but relate them to your analysis and how they affect your conclusions. An honest and complete acknowledgement of the limitations makes the analysis more trustworthy.)
+The limitations of this analysis are as follows. While we explored several interesting relationships, our analysis is based on observational data, which means that we cannot conclusively prove causality. The connection between climate awareness and sea ice extent, for example, is based on correlations rather than experimental or longitudinal data. Additionally, the cyclone and sea ice data may be influenced by other confounding environmental factors not captured in our analysis, such as ocean currents, atmospheric conditions, or geopolitical influences on climate policy. Furthermore, regional differences, such as socioeconomic factors or infrastructure, were not fully accounted for, which could also impact cyclone intensity and sea ice coverage. These limitations suggest that while our findings are insightful, further investigation and more robust data collection are needed to draw definitive conclusions.
 
 # References
 
